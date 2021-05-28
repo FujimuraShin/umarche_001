@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+/*--------------------------------------------------------------------------------------
+Base(Model First)
+---------------------------------------------------------------------------------------*/
+
+/*モバイルをベースとしたすべてに共通するスタイル*/
+/*--------------------------------------------------------------------------------------
+Tablet
+---------------------------------------------------------------------------------------*/
+@media screen and (min-width:768px){
+    /*タブレット端末から効くスタイル*/
+
+
+}
+
+
+/*--------------------------------------------------------------------------------------
+PC
+---------------------------------------------------------------------------------------*/
+@media screen and (min-width:920px){
+    /*PCから効くスタイル*/
+}
+
+
+/*--------------------------------------------------------------------------------------
+CSS リセット
+---------------------------------------------------------------------------------------*/
+
+
+*,*::before,*::after{box-sizing:border-box}body,h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}ul[role="list"],ol[role="list"]{list-style:none}html:focus-within{scroll-behavior:smooth}body{min-height:100vh;text-rendering:optimizeSpeed;line-height:1.5}a:not([class]){text-decoration-skip-ink:auto}img,picture{max-width:100%;display:block}input,button,textarea,select{font:inherit}@media(prefers-reduced-motion:reduce){html:focus-within{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}}
+
+/*--------------------------------------------------------------------------------------
+具体的なスタイルシート
+---------------------------------------------------------------------------------------*/
+body{
+    width:960px;
+    height:550px;
+    margin:0 auto;
+    border:solid 1px red;
+}
+
+header{
+    width:960px;
+    border:solid 1px green;
+}
+
+nav{
+    width:960px;
+    border:solid 1px greenyellow;
+}
+
+#wrapper{
+    border:solid 1px blue;
+    float:left;
+}
+
+main{
+    width:550px;
+    float:right;
+    border:1px solid pink;
+    
+}
+
+#side01{
+    border:1px solid green;
+    width:200px;
+    float:left;
+    
+}
+
+#side02{
+    border:1px solid blue;
+    width:200px;
+    float:right;
+    
+}
+
+footer{
+    border:1px solid blue;
+    clear:both;
+    width:960px;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

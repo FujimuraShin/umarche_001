@@ -1,0 +1,206 @@
+@charset "UTF-8";
+
+/*--------------------------------------------------------------------------------------
+Base(Model First)
+---------------------------------------------------------------------------------------*/
+
+/*モバイルをベースとしたすべてに共通するスタイル*/
+/*--------------------------------------------------------------------------------------
+Tablet
+---------------------------------------------------------------------------------------*/
+@media screen and (min-width:768px){
+    /*タブレット端末から効くスタイル*/
+
+
+}
+
+
+/*--------------------------------------------------------------------------------------
+PC
+---------------------------------------------------------------------------------------*/
+@media screen and (min-width:920px){
+    /*PCから効くスタイル*/
+}
+
+
+/*--------------------------------------------------------------------------------------
+CSS リセット
+---------------------------------------------------------------------------------------*/
+
+
+*,*::before,*::after{box-sizing:border-box}body,h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}ul[role="list"],ol[role="list"]{list-style:none}html:focus-within{scroll-behavior:smooth}body{min-height:100vh;text-rendering:optimizeSpeed;line-height:1.5}a:not([class]){text-decoration-skip-ink:auto}img,picture{max-width:100%;display:block}input,button,textarea,select{font:inherit}@media(prefers-reduced-motion:reduce){html:focus-within{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}}
+
+/*--------------------------------------------------------------------------------------
+基本的なスタイルシート
+---------------------------------------------------------------------------------------*/
+body{
+    width:960px;
+    margin:0 auto;
+    border:solid 1px red;
+}
+
+header{
+    width:960px;
+    border:solid 1px green;
+}
+
+nav{
+    width:960px;
+    border:solid 1px greenyellow;
+}
+
+#wrapper{
+    border:solid 1px blue;
+    float:left;
+}
+
+main{
+    width:550px;
+    float:right;
+    border:1px solid pink;
+    
+}
+
+#side01{
+    border:1px solid green;
+    width:200px;
+    float:left;
+    
+}
+
+#side02{
+    border:1px solid blue;
+    width:200px;
+    float:right;
+    
+}
+
+footer{
+    border:1px solid blue;
+    clear:both;
+    width:960px;
+    
+}
+
+/*--------------------------------------------------------------------------------------
+グローバルナビゲーション
+参考サイト：https://gray-code.com/html_css/making-side-by-side-menu/
+---------------------------------------------------------------------------------------*/
+#gnav{
+    background-color:gray;
+}
+
+#gnav ul{
+    overflow:hidden;
+    list-style:none;
+}
+
+#gnav ul li{
+    float:left;
+    width:20%;
+    
+}
+
+#gnav ul li a{
+    display:block;
+    text-decoration:none;
+    text-align:center;
+    color:white;
+}
+
+
+/*--------------------------------------------------------------------------------------
+右サイドメニュー
+---------------------------------------------------------------------------------------*/
+#side01 ul{
+    list-style:none;
+}
+
+#side01 ul li a{
+    text-decoration:none;
+}
+
+
+/*--------------------------------------------------------------------------------------
+メイン部分
+---------------------------------------------------------------------------------------*/
+/*1段目*/
+#sec001 img{
+    border:1px solid black;
+}
+
+#sec001 p#sec001_img001{
+    float:left;
+}
+
+#sec001 p#sec001_text001{
+    float:right;
+    border:1px solid red;
+    width:300px;
+}
+
+/*2段目*/
+#sec002 p#sec002_img002{
+    
+    border:1px solid black;
+    float:right;
+}
+
+#sec002 p#sec002_text002{
+    clear:both;
+    float:left;
+    border:1px solid red;
+    width:300px;
+}
+
+/*3段目*/
+#sec003{
+    clear:both;
+    text-align:center;
+}
+
+#sec003 #range001{
+    width:170px;
+    border:1px solid red;
+    display:inline-block;
+}
+
+#sec003 #range002{
+    width:170px;
+    border:1px solid red;
+    display:inline-block;
+}
+
+#sec003 #range003{
+    width:170px;
+    border:1px solid red;
+    display:inline-block;
+}
+
+/*--------------------------------------------------------------------------------------
+左サイドメニュー
+---------------------------------------------------------------------------------------*/
+#side02 ul{
+    list-style:none;
+}
+
+#side02 ul li a{
+    text-decoration:none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+<script src='https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js'></script>
+<div>
+    <input type="file" id="uploader">
+</div>
+<div>
+    進捗: <span id="progress">0</span>%
+</div>
+<div>
+    <textarea id="ocrResult" style="height: 300px;width:300px;"></textarea>
+</div>
+<script>
+    const recognize = function (evt) {
+        const files = evt.target.files;
+        if (files.length == 0) {
+            return;
+        }
+
+        Tesseract
+            .recognize(files[0], { lang: 'jpn', tessedit_pageseg_mode: "RAW_LINE" })
+            .progress(function (p) {
+                // 進歩状況の表示
+                let progressArea = document.getElementById("progress");
+                progressArea.innerText =  p.status + " " + Math.round(p.progress * 100) + "%";
+            })
+            .then(function (result) {
+                // 結果の表示
+                let textarea = document.getElementById("ocrResult");
+                textarea.value = result.text;
+            });
+    }
+    const elm = document.getElementById('uploader');
+    elm.addEventListener('change', recognize);
+</script>
