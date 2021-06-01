@@ -1,6 +1,6 @@
 <?php
 
-//◆◇◆◇◆◇◆◇◆◇
+//◆◇◆◇◆◇◆
 //変数の初期化＆日時の取得
 date_default_timezone_set('Asia/Tokyo');
 $now_datetime=date('Y-m-d H:i:s');
