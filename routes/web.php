@@ -24,4 +24,6 @@ Route::get('/dashboard', function () {
 
 Route::resource('owners',OwnersController::class);
 
+Route::post('owners/store',[OwnersContoller::class,'index']);
+
 require __DIR__.'/auth.php';
