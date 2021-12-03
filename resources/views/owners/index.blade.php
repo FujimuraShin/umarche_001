@@ -22,6 +22,8 @@
             オーナ一覧
         </h2>
     
+<a href="{{route('expired-owners.index')}}">期限切れオーナ一覧</a>
+  
 
 <section class="text-gray-600 body-font">
 <div class="container px-5　mx-auto">

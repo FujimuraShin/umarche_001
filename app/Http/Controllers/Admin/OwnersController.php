@@ -138,4 +138,16 @@ class OwnersController extends Controller
                 'status'=>'alert',
                  ]);
     }
+
+    public function expiredOwnerIndex(){
+        $expiredOwners=Owner::onlyTrashed()->get();
+
+        return view('expired-owners',compact('expiredOwners'));
+    }
+
+    public function expiredOwnerDestroy($id){
+        Owner::onlyTrashed()->findOrFail($id)->forceDelete();
+
+        return redirect()->route('expired-owners.index');
+    }
 }
