@@ -66,7 +66,9 @@ class OwnersController extends Controller
 
         return redirect()
         ->route('owners.index')
-        ->with('message','オーナ登録を実施しました');
+        ->with(['message'=>'オーナ登録を実施しました',
+                'status'=>'info',
+                ]);
 
     }
 
@@ -115,7 +117,9 @@ class OwnersController extends Controller
 
         return redirect()
         ->route('owners.index')
-        ->with('message','オーナ情報の更新しました');
+        ->with(['message'=>'オーナ情報の更新しました',
+                'status'=>'info',
+                ]);
     }
 
     /**
@@ -126,6 +130,12 @@ class OwnersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Owner::findOrFail($id)->delete();//ソフトデリート
+
+        return redirect()
+        ->route('owners.index')
+        ->with(['message'=>'オーナ情報の削除しました',
+                'status'=>'alert',
+                 ]);
     }
 }
