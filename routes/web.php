@@ -26,4 +26,6 @@ Route::resource('owners',OwnersController::class);
 
 Route::post('owners/store',[OwnersContoller::class,'index']);
 
+Route::post('owners/update',[OwnersContoller::class,'update']);
+
 require __DIR__.'/auth.php';
