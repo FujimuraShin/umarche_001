@@ -8,6 +8,7 @@ use App\Models\Owner; //Eloquent
 use Illuminate\Support\Facades\DB; //QueryBuilder
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use PHPUnit\Framework\MockObject\Stub\ReturnStub;
 
 class OwnersController extends Controller
 {
@@ -25,7 +26,7 @@ class OwnersController extends Controller
         
         //dd($e_all,$q_get,$q_first,$c_test);
 
-        $owners=Owner::select('name','email','created_at')->get();
+        $owners=Owner::select('id','name','email','created_at')->get();
 
         return view('owners.index',compact('owners'));
         
@@ -63,7 +64,9 @@ class OwnersController extends Controller
             'password'=>Hash::make($request->password),
         ]);
 
-        return redirect()->route('owners.index');
+        return redirect()
+        ->route('owners.index')
+        ->with('message','オーナ登録を実施しました');
 
     }
 
@@ -86,7 +89,9 @@ class OwnersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $owner=Owner::findOrFail($id);
+        //dd($owner);
+        return view('owners.edit',compact('owner'));
     }
 
     /**
