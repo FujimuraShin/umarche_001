@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\OwnersController;
+use App\Http\Controllers\Admin\ShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +36,23 @@ Route::prefix('expired-owners')->
 
         Route::post('destroy/{owner}',[OwnersController::class,'expiredOwnerDestroy'])->name('expired-owners.destroy');
     });
+
+    /*
+Route::prefix('shop')-> 
+    group(function(){
+
+        Route::get('index',[ShopController::class,'index'])->name('shops.index');
+
+        Route::get('destroy/{shop}',[ShopController::class,'edit'])->name('shops.edit');
+
+        Route::post('update/{shop}',[ShopController::class,'update'])->name('shops.update');
+    });
+    */
+
+    Route::get('shops/index',[ShopController::class,'index'])->name('shops.index');
+
+    Route::get('shops/edit/{shop}',[ShopController::class,'edit'])->name('shops.edit');
+
+    Route::post('shops/update/{shop}',[ShopController::class,'update'])->name('shops.update');
 
 require __DIR__.'/auth.php';

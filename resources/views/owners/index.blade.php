@@ -21,7 +21,12 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             オーナ一覧
         </h2>
-    
+<a href="http://127.0.0.1:8000/shops/index">店舗情報</a>
+<br/><br/>    
+
+<a href="http://127.0.0.1:8000/shops/edit/2">店舗情報-編集</a>
+<br/><br/>
+
 <a href="{{route('expired-owners.index')}}">期限切れオーナ一覧</a>
   
 
