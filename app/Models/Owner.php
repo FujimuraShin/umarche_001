@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Shop;
+
 
 class Owner extends Model
 {
@@ -15,4 +17,8 @@ class Owner extends Model
         'email',
         'password',
     ];
+
+    public function shop(){
+        return $this->hasOne(Shop::class);
+    }
 }
