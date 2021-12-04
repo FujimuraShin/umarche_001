@@ -55,7 +55,7 @@
         <div class="p-2 w-full flex justify-around mt-4">
           <button type="button" onclick="location.href='{{route('owners.index')}}'" class=" bg-gray-200 border-0 py-2 px-8 focus:outline-none hover:bg-gray-400 rounded text-lg">戻る</button>
           <button type="submit" class=" text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">更新する</button>
-        </div>)
+        </div>
         
           <span class="inline-flex">
             <a class="text-gray-500">
