@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <title>Mine3DJS</title>
+</head>
+<body>
+    <div id="chart--wrapper"></div>
+
+    <script>
+        const contents=d3.select('chart--wrapper')
+        const svg=contents.append("svg");
+
+        //グラフの幅
+        width=contents.node().clientWidth-padding;
+        //グラフの高さ
+        height=contents.node().clientHeight-padding;
+
+        let dataset=[
+            {
+                date:"2021/1/1",
+                value:70
+            },
+        ]
+
+        let timeparser=d3.timeParse("%Y/%m/%d");
+
+        //x軸の目盛り表示フォーマット
+        let format=d3.timeFormat("%Y/%m");
+
+        //データのパース
+        dataset=dataset.map(function(d){
+            //日付のデータをパース
+            return {date:timeparser(d.date),value:d.value};
+        });
+
+        //svg要素にg要素を追加してクラスを付与してxに代入
+        x=svg.append("g")
+                .attr("class","axis axis-x");
+        y=svg.append("g")
+                .attr("class","axis axis-y");
+
+        //x軸の目盛の量
+        let xTicks=(window.innerWidht<768) ? 6: 12;
+
+        xScale=d3.scaleTime()
+                    .domain([
+                        d3.min(dataset,function(d){return d.date;}),
+                        d3.max(dataset,function(d){return d.date;})
+                    ])
+                    .range([padding,width]);
+        
+        yScale=d3.scaleLinear()
+                    .domain([
+                        0,
+                        d3.max(dataset,function(d){return d.value;})
+                    ])
+                    .range([height,padding]);
+
+        axisx=d3.axisBottom(xScale)
+                .ticks(xTicks)
+                .tickFormat(format);
+
+        axisy=d3.axisLeft(yScale);
+
+        x.attr("transform","translate("+0+","+(height)+")")
+         .call(axisx);
+
+        y.attr("transform","translate("+padding+","+0+")")
+         .call(axisy);
+    
+    
+    </script>
+</body>
+</html> 

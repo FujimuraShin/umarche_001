@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <title>Mine3DJS</title>
+</head>
+<body>
+    <div id="chart--wrapper"></div>
+<style>
+  #chart--wrapper {
+    height: 300px;
+  }
+  #chart--wrapper svg {
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+
+<script src="https://unpkg.com/papaparse@5.2.0/papaparse.min.js"></script>
+    <script>
+        // コンテンツが読み終わったら実行
+document.addEventListener('DOMContentLoaded', async (e) => {
+  // D3.js用のDOM取得
+  const contents = d3.select('#chart--wrapper');
+  const svg = contents.append("svg");
+
+  // 1. データを取得
+  const data = await getData();
+  // 2. データを整形する
+  const dataset = filterData(data.data);
+  // 3. グラフの枠を準備する
+  const scale = setupGraph(contents, svg, dataset);
+
+  // 4. 折れ線グラフを描画
+  const color = d3.rgb("#a785cc");
+  drawLine(svg, dataset, scale, color);
+
+  // 5. 塗りつぶし
+  drawFill(svg, dataset, scale, color);
+});
+
+async function getData() {
+  return new Promise((res, rej) => {
+    Papa.parse('./AAPL.csv', {
+      download: true,
+      header: true,
+      delimiter: ',',
+      complete: res,
+      error: rej
+    });
+  })
+}
+
+function filterData(data) {
+  const timeparser = d3.timeParse("%Y-%m-%d");
+  return data.map(d => {
+    return  {
+      date: timeparser(d.Date),
+      value: parseFloat(d.Open)
+    };
+  })
+  .filter(d => d.date != null); // 不要なデータを除外
+}
+
+function setupGraph(contents, svg, dataset) {
+  const padding = 30;
+  // グラフの幅（X軸）
+  const width = contents.node().clientWidth - padding;
+
+  // グラフの高さ（Y軸）
+  const height = contents.node().clientHeight - padding;
+
+  // gはグループです。SVGで他の要素をグループ化する際に利用するタグです
+  // グループをXとY、両方に追加します。
+  x = svg
+    .append("g")
+    .attr("class", "axis axis-x")
+  y = svg
+    .append("g")
+    .attr("class", "axis axis-y")
+
+  // X軸に関する設定です
+  const xScale = d3
+    // 時間ベースの軸であることを定義します
+    .scaleTime()
+    // 最低値、最大値の設定です
+    .domain([
+      d3.min(dataset.map(d => d.date)), // 日付の配列を渡せば、d3.minで最小値を出してくれます
+      d3.max(dataset.map(d => d.date))  // 日付の配列を渡せば、d3.maxで最大値を出してくれます
+    ])
+    // 大きさを指定します
+    .range([padding, width]);
+
+  // Y軸に関する設定です
+  const yScale = d3
+    // 数値ベースの軸であることを定義します
+    .scaleLinear()
+    // 最低値、最大値の設定です
+    .domain([
+      0,
+      d3.max(dataset.map(d => d.value)) // 値の配列を渡せば、d3.maxで最大値を出してくれます
+    ])
+    // 大きさを指定します
+    .range([height, padding]);
+
+  // 表示する際のフォーマットです（YYYY/MMという表示です）
+  const format = d3.timeFormat("%Y/%m");
+  // X軸の値の個数です
+  const xTicks = 6;
+  // X軸の記述設定です
+  const axisx = d3
+    .axisBottom(xScale)
+    .ticks(xTicks)
+    .tickFormat(format);
+  // Y軸の記述設定です
+  const axisy = d3.axisLeft(yScale);
+
+  // SVGに描画します
+  x
+    .attr("transform", "translate(" + 0 + "," + (height) + ")")  
+    .call(axisx); 
+  y
+    .attr("transform", "translate(" + padding + "," + 0 + ")")
+    .call(axisy);
+
+  // xScale/yScaleはこの後も使うので返却します
+  return {x: xScale, y: yScale};
+}
+
+function drawLine(svg, dataset, scale, color) {
+  // pathはSVGで図形を描画する汎用的な要素です
+  const path = svg.append("path");
+  // 折れ線を生成します
+  const line = d3
+    .line()
+    .x(d => scale.x(d.date))
+    .y(d => scale.y(d.value));
+  // SVG上に描画します。colorは引数で受け取っている、色の指定です
+  path
+    .datum(dataset)
+    .attr("fill", "none")
+    .attr("stroke", color)
+    .attr("d", line);
+}
+
+
+
+    </script>
+</body>
+</html> 
